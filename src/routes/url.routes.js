@@ -9,7 +9,6 @@ import { validateSchema } from "../middlewares/validateSchema.middleware.js"
 import { shortenUrlSchema } from "../schemas/shortUrl.schema.js"
 
 
-
 export const urlRoutes = Router()
 
 urlRoutes.get ("/urls/:id", getUrl)

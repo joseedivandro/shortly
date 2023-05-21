@@ -92,7 +92,7 @@ export async function deleteUrl(req, res) {
 
     const { id } = { ...req.params }
 
-    const userIdRequest = req.userId
+    const idUserSolicited = req.userId
 
     try {
 
@@ -101,11 +101,11 @@ export async function deleteUrl(req, res) {
             [id]
         )
 
-        const userIdInDb = rows[0]?.userId
+        const userIdDb = rows[0]?.userId
 
-        if(!userIdInDb) return res.sendStatus(404)
+        if(!userIdDb) return res.sendStatus(404)
 
-        if (userIdRequest !== userIdInDb) return res.sendStatus(401)
+        if (idUserSolicited !== userIdDb) return res.sendStatus(401)
 
         const { rowCount } = await db.query(
             "DELETE FROM urls WHERE id = $1",
@@ -117,6 +117,6 @@ export async function deleteUrl(req, res) {
         console.log(err)
         return res.sendStatus(500)
     }    
-    
+
     return res.sendStatus(204)
 }

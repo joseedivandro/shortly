@@ -2,7 +2,7 @@ import { db } from "../dataBase/connection.js";
 
 
 export async function getRanking(req, res) {
-    const usersLimit = 10
+    const urlLimit = 10
 
     try {
         const response = await db.query(
@@ -18,13 +18,13 @@ export async function getRanking(req, res) {
             ORDER BY "visitCount" DESC
             LIMIT $1;          
             `,
-            [usersLimit]
+            [urlLimit]
         )
 
         return res.send(response.rows)
 
-    } catch (err) {
-        console.log(err)
+    } catch (error) {
+        console.log(error)
         return res.sendStatus(500)
     }
 }
