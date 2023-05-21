@@ -30,7 +30,7 @@ export async function login(req, res, next) {
 
         const { id, password: passwordInDb } = response.rows[0]
 
-        req.sanitizedBody.userId = id
+        req.body.userId = id
 
         if (!bcrypt.compareSync(password, passwordInDb)) return res.sendStatus(401)
 
