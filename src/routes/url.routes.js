@@ -10,12 +10,12 @@ import { shortenUrlSchema } from "../schemas/shortUrl.schema.js"
 
 
 
-export const urlsRoutes = Router()
+export const urlRoutes = Router()
 
-urlsRoutes.get ("/urls/:id", getUrl)
+urlRoutes.get ("/urls/:id", getUrl)
 
-urlsRoutes.get('/urls/open/:shortUrl', redirectUrl)
+urlRoutes.get('/urls/open/:shortUrl', redirectUrl)
 
-urlsRoutes.post("/urls/shorten", validateToken, validateSchema(shortenUrlSchema), createShortenUrl)
+urlRoutes.post("/urls/shorten", validateToken, validateSchema(shortenUrlSchema), createShortenUrl)
 
-urlsRoutes.delete('/urls/:id', validateToken, deleteUrl)
+urlRoutes.delete('/urls/:id', validateToken, deleteUrl)
