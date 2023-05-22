@@ -7,14 +7,16 @@ export async function signUp(req, res) {
     try {
         await db.query(
             "INSERT INTO users (name, email, password) VALUES ($1, $2, $3)",
-            [name, email, bcrypt.hashSync(password, 10)]
+            [name, email, bcrypt.hashSync(password, 10)],
+
+            res.sendStatus(201)
         )
 
     } catch (err) {
         if (err.code === "23505") return res.sendStatus(409);
         res.status( 500 ).send( {message : err.message} );
     }
-    return res.sendStatus(201)
+
 }
 
 export async function login(req, res, next) {
