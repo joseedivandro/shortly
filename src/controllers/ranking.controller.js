@@ -1,6 +1,5 @@
 import { db } from "../dataBase/connection.js";
 
-
 export async function getRanking(req, res) {
     const urlLimit = 10
 

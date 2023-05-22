@@ -1,8 +1,8 @@
 import { db } from "../dataBase/connection.js";
-import shortUrl from "./shortUrl.js";
+import shortUrl from "./nanoid/shortUrl.js"
 
 
-export async function createShortenUrl(req, res) {
+export async function createShortUrl(req, res) {
 
     const { url } = req.body
 

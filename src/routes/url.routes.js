@@ -1,6 +1,6 @@
 import {Router} from "express"
 
-import { createShortenUrl, getUrl, redirectUrl, deleteUrl} from "../connection/url.controller.js"
+import { createShortUrl, getUrl, redirectUrl, deleteUrl} from "../controllers/url.controller.js"
 
 import { validateToken } from "../middlewares/validate.token.js"
 
@@ -15,6 +15,6 @@ urlRoutes.get ("/urls/:id", getUrl)
 
 urlRoutes.get('/urls/open/:shortUrl', redirectUrl)
 
-urlRoutes.post("/urls/shorten", validateToken, validateSchema(shortenUrlSchema), createShortenUrl)
+urlRoutes.post("/urls/shorten", validateToken, validateSchema(shortenUrlSchema), createShortUrl)
 
 urlRoutes.delete('/urls/:id', validateToken, deleteUrl)

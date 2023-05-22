@@ -1,7 +1,7 @@
 import { Router } from "express";
 
 
-import { meUserGet } from "../connection/user.me.controller.js";
+import { meUserGet } from "../controllers/user.me.controller.js";
 
 import { validateToken } from "../middlewares/validate.token.js";
 

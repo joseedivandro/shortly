@@ -1,6 +1,6 @@
 import { Router} from "express";
 
-import { getRanking } from "../connection/ranking.controller.js";
+import { getRanking } from "../controllers/ranking.controller.js";
 
 export const rankingRoutes = Router()
 
