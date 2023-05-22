@@ -15,7 +15,7 @@ export async function signUp(req, res) {
         console.log("Erro no signUp:", err);
         return res.sendStatus(500)
     }
-    return res.sendStatus(201)
+    
 }
 
 export async function login(req, res, next) {
