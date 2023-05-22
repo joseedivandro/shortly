@@ -11,8 +11,8 @@ export async function signUp(req, res) {
         )
 
     } catch (err) {
-        console.log("Erro no signUp:", err);
-        return res.sendStatus(500)
+        if (err.code === "23505") return res.sendStatus(409);
+        res.status( 500 ).send( {message : err.message} );
     }
     return res.sendStatus(201)
 }
