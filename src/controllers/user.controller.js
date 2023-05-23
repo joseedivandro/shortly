@@ -8,15 +8,20 @@ export async function signUp(req, res) {
         await db.query(
             "INSERT INTO users (name, email, password) VALUES ($1, $2, $3)",
             [name, email, bcrypt.hashSync(password, 10)],
-            res.sendStatus(201)
-        )
-
+            (err, result) => {
+                if (err) {
+                    console.log("Erro no signUp:", err);
+                    return res.sendStatus(500);
+                }
+                return res.sendStatus(201);
+            }
+        );
     } catch (err) {
         console.log("Erro no signUp:", err);
-        return res.sendStatus(500)
+        return res.sendStatus(500);
     }
-    
 }
+
 
 export async function login(req, res, next) {
     const { email, password } = req.body
