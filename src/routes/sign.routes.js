@@ -12,4 +12,4 @@ export const signRoutes = Router();
 
 
 signRoutes.post("/signup", validateSchema(signUpSchema),signUp );
-signRoutes.post("/signin", validateSchema(signInSchema),login, token, verifyToken);
+signRoutes.post("/signin", validateSchema(signInSchema),login, verifyToken, token );
