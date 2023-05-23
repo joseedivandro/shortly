@@ -5,11 +5,12 @@ export async function signUp(req, res) {
     const { name, email, password } = req.body
 
     try {
-        await db.query(
-            "INSERT INTO users (name, email, password) VALUES ($1, $2, $3)",
-            [name, email, bcrypt.hashSync(password, 10)],
-            res.status( 201 ).send( {message: 'Usuário cadastrado!'} )
-        )
+        await db.query('INSERT INTO users (name, email, password) VALUES ($1, $2, $3)', [
+      name,
+      email,
+      bcrypt.hashSync(password, 10),
+    ]);
+    res.status(201).send({ message: 'Usuário cadastrado!' });
 
     } catch (err) {
         if (err.code === "23505") return res.sendStatus(409);
