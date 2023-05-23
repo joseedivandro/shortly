@@ -2,22 +2,22 @@ import { db } from "../dataBase/connection.js"
 import bcrypt from "bcrypt"
 
 export async function signUp(req, res) {
-    const { name, email, password } = req.body
-
+    const { name, email, password } = req.body;
+  
     try {
-        await db.query(
-            "INSERT INTO users (name, email, password) VALUES ($1, $2, $3)",
-            [name, email, bcrypt.hashSync(password, 10)],
-            res.status( 201 ).send( {message: 'Usuário cadastrado!'} )
-        )
-
+      await db.query(
+        "INSERT INTO users (name, email, password) VALUES ($1, $2, $3)",
+        [name, email, bcrypt.hashSync(password, 10)]
+      );
+  
+      res.status(201).send({ message: 'Usuário cadastrado!' });
     } catch (err) {
-        
-        res.status( 500 ).send( {message : err.message} );
+      if (err.code === '23505') return res.sendStatus(409);
+  
+      res.status(500).send({ message: err.message });
     }
-    
-}
-
+  }
+  
 export async function login(req, res, next) {
     const { email, password } = req.body
 

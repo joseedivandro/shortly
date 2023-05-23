@@ -11,5 +11,5 @@ import verifyToken from "../middlewares/token.repeat.user.js"
 export const signRoutes = Router();
 
 
-signRoutes.post("/signup", validateSchema(signUpSchema),verifyEmail ,signUp );
+signRoutes.post("/signup", validateSchema(signUpSchema),signUp );
 signRoutes.post("/signin", validateSchema(signInSchema),login, token, verifyToken);
